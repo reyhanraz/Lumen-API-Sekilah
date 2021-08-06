@@ -48,9 +48,9 @@ class AuthController extends Controller
         if ($register){
            
             return response()->json(
-                [
+                
                     $register
-                ], 201);
+                , 201);
         } else {
             return response()->json(
                 [
@@ -85,9 +85,9 @@ class AuthController extends Controller
         if ($update){
             $data = User::where('email', $email)->first();
             return response()->json(
-                [
+                
                     $data
-                ], 201);
+                , 201);
         } else {
             return response()->json(
                 [
@@ -115,9 +115,9 @@ class AuthController extends Controller
             $user = User::where('email', $email)->first();
 
             return response()->json(
-                [
+                
                     $user
-                ], 201);
+                , 201);
         } else {
             return response()->json(
                 [
