@@ -57,10 +57,12 @@ $router->get('/jurusan/{id}', function($id){
 
 $router->post('/register', 'AuthController@register');
 $router->post('/login', 'AuthController@login');
+$router->post('/update', 'AuthController@update');
+
 $router->post('penjurusan/add', 'JurusanController@add');
 $router->post('penjurusan/addDetail', 'JurusanController@addToDetail');
 
-$router->get('/send_email' ,'AuthController@mail');
+$router->post('/send_email' ,'AuthController@mail');
 
     
 

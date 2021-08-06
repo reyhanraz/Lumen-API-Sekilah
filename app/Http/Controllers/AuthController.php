@@ -64,6 +64,45 @@ class AuthController extends Controller
 
     }
 
+    public function update(Request $request){
+        $nama = $request->input('nama');
+        $email = $request->input('email');
+        $foto = $request->input('foto');
+        $alamat = $request->input('alamat');
+        $noTelp = $request->input('noTelp');
+        $sekolahAsal = $request->input('sekolahAsal');
+        $namaOrtu = $request->input('namaOrtu');
+
+        $user = User::where('email', $email)->first();
+
+        $update = $user->update([
+            'nama' => $nama,
+            'foto' => $foto,
+            'alamat' => $alamat,
+            'noTelp' => $noTelp,
+            'sekolahAsal' => $sekolahAsal,
+            'namaOrtu' => $namaOrtu
+        ]);
+
+        if ($update){
+            $data = User::where('email', $email)->first();
+            return response()->json(
+                [
+                    'success'=>true,
+                    'message'=>'Update Success',
+                    'data'=>$data
+                ], 201);
+        } else {
+            return response()->json(
+                [
+                    'success'=>false,
+                    'message'=>'Update Fail',
+                    'data'=>''
+                ], 400);
+        }
+
+    }
+
     public function login(Request $request)
     {
         $email = $request->input('email');
@@ -98,13 +137,22 @@ class AuthController extends Controller
     public function mail(Request $request) {
         $to_name = $request->input('name');
         $to_email = $request->input('email');
-        $data = array('name'=>$to_name, "body" => "Your Registration is Success");
+        $body = $request->input('message');
+        $data = array('name'=>$to_name, "body" => $body);
              
-        Mail::send('mail', $data, function($message) use ($to_name, $to_email) {
+        $mail = Mail::send('mail', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
                     ->subject('Registration Success');
             $message->from('reyhan.rifqi.tech@gmail.com','Sekolah');
         });
+
+        
+            return response()->json([
+                'success' => true,
+                'message' => 'Send email success',
+                'data' => $to_email
+            ],201);
+        
     }
 
     //
