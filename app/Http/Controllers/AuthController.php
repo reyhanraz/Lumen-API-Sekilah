@@ -148,10 +148,10 @@ class AuthController extends Controller
 
         
             return response()->json([
-                'success' => true,
-                'message' => 'Send email success',
-                'data' => $to_email
-            ],201);
+                'name' => $to_name,
+                'message' => $body,
+                'email' => $to_email
+            ],200);
         
     }
 
