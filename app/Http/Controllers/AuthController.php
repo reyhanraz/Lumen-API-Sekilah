@@ -49,9 +49,7 @@ class AuthController extends Controller
            
             return response()->json(
                 [
-                    'success'=>true,
-                    'message'=>'Register Success',
-                    'data'=>$register
+                    $register
                 ], 201);
         } else {
             return response()->json(
@@ -88,9 +86,7 @@ class AuthController extends Controller
             $data = User::where('email', $email)->first();
             return response()->json(
                 [
-                    'success'=>true,
-                    'message'=>'Update Success',
-                    'data'=>$data
+                    $data
                 ], 201);
         } else {
             return response()->json(
@@ -120,9 +116,7 @@ class AuthController extends Controller
 
             return response()->json(
                 [
-                    'success'=>true,
-                    'message'=>'Login Success',
-                    'data'=>$user
+                    $user
                 ], 201);
         } else {
             return response()->json(
@@ -151,7 +145,7 @@ class AuthController extends Controller
                 'name' => $to_name,
                 'message' => $body,
                 'email' => $to_email
-            ],200);
+            ],201);
         
     }
 
