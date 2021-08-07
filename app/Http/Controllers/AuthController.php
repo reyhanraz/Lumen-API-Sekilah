@@ -128,6 +128,28 @@ class AuthController extends Controller
         }
     }
 
+    public function checkEmailRegistered(Request $request)
+    {
+        $email = $request->input('email');
+
+        $user = User::where('email', $email)->first();
+
+            return response()->json(
+                $user, 200);
+        
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->input('id');
+        $user = User::where('id',$id)->delete();
+        if ($user){
+            return response()->json(
+                $user, 201
+            );
+        }
+    }
+
     public function mail(Request $request) {
         $to_name = $request->input('name');
         $to_email = $request->input('email');

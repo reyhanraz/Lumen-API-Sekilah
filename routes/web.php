@@ -35,7 +35,7 @@ $router->get('/testConnection', function () use ($router) {
     }
 });
 
-$router->get('/users', function(){
+$router->get('/user', function(){
     $users = User::all();
     // $users = DB::select('select * from users');
     return $users;
@@ -55,9 +55,11 @@ $router->get('/jurusan/{id}', function($id){
 });
 
 
-$router->post('/register', 'AuthController@register');
-$router->post('/login', 'AuthController@login');
-$router->post('/update', 'AuthController@update');
+$router->post('/user/register', 'AuthController@register');
+$router->post('/user/login', 'AuthController@login');
+$router->post('/user/update', 'AuthController@update');
+$router->post('/user/delete', 'AuthController@delete');
+$router->get('/user/checkExisting', 'AuthController@checkEmailRegistered');
 
 $router->post('penjurusan/add', 'JurusanController@add');
 $router->post('penjurusan/addDetail', 'JurusanController@addToDetail');

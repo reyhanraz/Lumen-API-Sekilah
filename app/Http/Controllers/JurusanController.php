@@ -32,11 +32,8 @@ class JurusanController extends Controller
 
         if ($addJurusan){
             return response()->json(
-                [
-                    'success'=>true,
-                    'message'=>'Add Jurusan Success',
-                    'data'=>$addJurusan
-                ], 201);
+                $addJurusan
+                , 201);
         } else {
             return response()->json(
                 [
@@ -66,11 +63,8 @@ class JurusanController extends Controller
 
         if ($addDetail){
             return response()->json(
-                [
-                    'success'=>true,
-                    'message'=>'Add Detail Success',
-                    'data'=>$addDetail
-                ], 201);
+                $addDetail
+                , 201);
         } else {
             return response()->json(
                 [
